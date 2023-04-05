@@ -4,7 +4,7 @@
 
 ## Screenshot
 
-![alt cover]()
+![alt cover](https://github.com/CharlesSin/Web-Course-Project/blob/master/public/cover.jpg)
 
 ## Demo
 

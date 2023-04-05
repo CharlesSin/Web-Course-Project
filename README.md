@@ -8,7 +8,7 @@
 
 ## Demo
 
-[Demo Link]()
+[Demo Link](https://indigenous-people-info.vercel.app)
 
 ## Introduction
 

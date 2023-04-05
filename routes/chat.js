@@ -17,18 +17,18 @@ router.get("/chat", (req, res, next) => {
 });
 
 router.get("/chats", (req, res, next) => {
-  console.log(`${req.session}`);
-  var sess = req.session;
-  var loginUser = sess.loginUser;
-  var userEmail = sess.userEmail;
-  var isLogined = !!loginUser;
+  // console.log(`${req.session}`);
+  const sess = req?.session;
+  const loginUser = sess.loginUser;
+  const userEmail = sess.userEmail;
+  const isLogined = !!loginUser;
   req.session.prjId = " ";
   req.session.prj = " ";
 
-  var usertokenID = sess.tokenID;
-  var uid = sess.uid;
+  const usertokenID = sess.tokenID;
+  const uid = sess.uid;
 
-  var msgRef = firebase.ref("/messageboard");
+  let msgRef = firebase.ref("/messageboard");
   const msgArray = new Promise((resolve, reject) => {
     msgRef.on("value", function (snapshot) {
       var data = snapshot.val();
@@ -62,12 +62,12 @@ router.get("/chats", (req, res, next) => {
 });
 
 router.post("/createMsg", (req, res, next) => {
-  var sess = req.session;
-  var uid = sess.uid;
-  var loginUser = sess.loginUser;
-  var title = req.body.title;
-  var message = req.body.msg;
-  var msgRef = firebase.ref("/messageboard");
+  const sess = req?.session;
+  const uid = sess.uid;
+  const loginUser = sess.loginUser;
+  const title = req.body.title;
+  const message = req.body.msg;
+  const msgRef = firebase.ref("/messageboard");
 
   msgRef.push({
     title: title,
@@ -111,8 +111,8 @@ router.post("/get_msg_info", (req, res, next) => {
 });
 
 router.post("/sendMsg", (req, res, next) => {
-  var sess = req.session;
-  var msgRef = firebase.ref(`/messageboard/${req.body.key}/messages`);
+  const sess = req?.session;
+  const msgRef = firebase.ref(`/messageboard/${req.body.key}/messages`);
   msgRef.push({
     commitat: moment.now(),
     commitby: sess.loginUser,

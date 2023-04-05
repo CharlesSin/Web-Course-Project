@@ -5,8 +5,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 // import session module
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
+// const session = require("express-session");
+// const FileStore = require("session-file-store")(session);
 
 // import Route
 const chatRouter = require("./routes/chat");
@@ -28,22 +28,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // set up session
-const identityKey = "skey";
-app.set("trust proxy", 1); // trust first proxy
+// const identityKey = "skey";
+// app.set("trust proxy", 1); // trust first proxy
 
-app.use(
-  session({
-    name: identityKey,
-    secret: "charles", // 用來對session id相關的cookie進行簽名
-    store: new FileStore(), // 本地儲存session（文字檔案，也可以選擇其他store，比如redis的）
-    saveUninitialized: false, // 是否自動儲存未初始化的會話，建議false
-    resave: false, // 是否每次都重新儲存會話，建議false
-    cookie: {
-      maxAge: 3600 * 1000, // 有效期，單位是毫秒 1hour
-      // expires: expiryDate
-    },
-  })
-);
+// app.use(
+//   session({
+//     name: identityKey,
+//     secret: "charles", // 用來對session id相關的cookie進行簽名
+//     store: new FileStore(), // 本地儲存session（文字檔案，也可以選擇其他store，比如redis的）
+//     saveUninitialized: false, // 是否自動儲存未初始化的會話，建議false
+//     resave: false, // 是否每次都重新儲存會話，建議false
+//     cookie: {
+//       maxAge: 3600 * 1000, // 有效期，單位是毫秒 1hour
+//       // expires: expiryDate
+//     },
+//   })
+// );
 
 app.use("/", indexRouter);
 app.use("/", timelineRouter);

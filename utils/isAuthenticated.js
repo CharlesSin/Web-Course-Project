@@ -14,7 +14,7 @@ function isAuthenticated(req, res, next) {
     .verifyIdToken(idToken)
     .then((decodedToken) => {
       let uid = decodedToken.uid;
-      console.log({ decodedToken });
+      // console.log({ decodedToken });
       if (uid) {
         console.log("indide if");
         req.session.regenerate(function (err) {
@@ -23,8 +23,8 @@ function isAuthenticated(req, res, next) {
           }
           //here for user id.
           req.session.tokenID = idToken;
-          req.session.loginUser = decodedToken.name;
-          req.session.userEmail = decodedToken.email;
+          req.session.loginUser = decodedToken?.name;
+          req.session.userEmail = decodedToken?.email;
           req.session.uid = uid;
           next();
         });
